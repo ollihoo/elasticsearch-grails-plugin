@@ -17,15 +17,7 @@ grails.project.dependency.resolution = {
         grailsPlugins()
         grailsHome()
         grailsCentral()
-
-        // uncomment the below to enable remote dependency resolution
-        // from public Maven repositories
-        // mavenLocal()
         mavenCentral()
-        //mavenRepo "http://snapshots.repository.codehaus.org"
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
         mavenRepo "http://oss.sonatype.org/content/repositories/releases/"
     }
     dependencies {
@@ -33,17 +25,12 @@ grails.project.dependency.resolution = {
         runtime "org.elasticsearch:elasticsearch:0.90.3"
         runtime "org.elasticsearch:elasticsearch-lang-groovy:1.5.0"
         runtime 'com.spatial4j:spatial4j:0.3'
-		test("org.spockframework:spock-grails-support:0.7-groovy-2.0"){
-            export = false
-        }
+        compile "org.spockframework:spock-grails-support:0.7-groovy-2.0"
     }
     plugins {
+        build ":tomcat:$grailsVersion"
 		runtime ":hibernate:$grailsVersion"
-        build (":release:2.2.1", ":rest-client-builder:1.0.3") {
-            export = false
-        }
         test(":spock:0.7") {
-            export = false
             exclude "spock-grails-support"
         }
     }
